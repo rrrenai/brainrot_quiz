@@ -48,22 +48,22 @@ const questions = [
 const result = [
     {
         name: "lite",
-        image: "",
+        image: "./media/lite.jpg",
         desc: "You don't play games all that often, but you enjoy them for the fun of playing with others!"
     },
     {
         name: "casual",
-        image: "",
+        image: "./media/casual.jpg",
         desc: "You play and enjoy games often enough to beat some levels!"
     },
     {
         name: "skilled",
-        image: "",
+        image: "./media/skilled.jpg",
         desc: "You play games pretty often and know a wide variety of games!"
     },
     {
         name: "HARDCORE",
-        image: "",
+        image: "./media/hardcore.jpg",
         desc: "You have dedicated your life to video games! I'm sorry :("
     },
 ];
@@ -92,7 +92,7 @@ function showQuestion() {
 
     let currentQuestion = questions[currentQuestionIndex];
     let questionNum = currentQuestionIndex + 1; 
-    questionElement.innerHTML = `${score} - ${questionNum}. ${currentQuestion.question}`;
+    questionElement.innerHTML = `${questionNum}. ${currentQuestion.question}`;
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
@@ -149,8 +149,8 @@ function showScore() {
     resetState();
     let gamerType = detResult();
 
-    questionElement.innerHTML = `You scored ${score/5} points!`;
-    questionElement.innerHTML += `<h2 class="center">You are a ${gamerType.name} gamer!</h2>`;
+    // questionElement.innerHTML = `You scored ${score/5} points!`;
+    questionElement.innerHTML = `<h2 class="center">You are a ${gamerType.name} gamer!</h2>`;
     if (gamerType.image !== null) {
         questionElement.innerHTML += `<img src="${gamerType.image}" alt="${gamerType.name}" class="center">`;
     }
