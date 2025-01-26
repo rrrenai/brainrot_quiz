@@ -1,6 +1,6 @@
 # GAMER personality quiz
 ### What kind of GAMER are YOU?
-Take this short 2-minute quiz to find out!\
+Take this short 2-minute quiz to find out!
 
 ## Are you insecure about your gaming style?
 
