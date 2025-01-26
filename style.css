@@ -62,10 +62,9 @@ body {
     cursor: pointer;
     display: block;
     visibility: hidden;
+    text-align: center;
 }
-.correct {
-    background: #9aeabc;
-}
-.incorrect {
-    background: #ff9393;
+.selected {
+    background: #0a0314;
+    color: #FFF;
 }
