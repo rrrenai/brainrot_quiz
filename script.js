@@ -43,6 +43,24 @@ const questions = [
             { text: "The trucks", value: 20 },
             { text: "The use of semiconductor RAM dates back to 1965 when IBM introdu...", value: 40 },
         ]
+    },
+    {
+        question: "What is/was your favorite Hack Club event?",
+        answers: [
+            { text: "Hackapet", value: 10 },
+            { text: "Scrapyard", value: 30 },
+            { text: "Boba Drops", value: 20 },
+            { text: "Juice", value: 40 },
+        ]
+    },
+    {
+        question: "How often are you online?",
+        answers: [
+            { text: "Only for school / work", value: 10 },
+            { text: "My Discord is set to run on startup", value: 30 },
+            { text: "I check my DMs / mentions within 10 minutes", value: 20 },
+            { text: "I turn off Discord overlay cuz it causes lag", value: 40 },
+        ]
     }
 ];
 const result = [
@@ -129,7 +147,7 @@ function selectAnswer(button) {
 }
 
 function detResult() {
-    grade = score/5;
+    grade = score / questions.length;
     profile = [];
 
     if (grade <= 10) {
@@ -149,7 +167,7 @@ function showScore() {
     resetState();
     let gamerType = detResult();
 
-    // questionElement.innerHTML = `You scored ${score/5} points!`;
+    // questionElement.innerHTML = `You scored ${score / questions.length} points!`;
     questionElement.innerHTML = `<h2 class="center">You are a ${gamerType.name} gamer!</h2>`;
     if (gamerType.image !== null) {
         questionElement.innerHTML += `<img src="${gamerType.image}" alt="${gamerType.name}" class="center">`;
