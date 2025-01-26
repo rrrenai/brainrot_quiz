@@ -68,3 +68,7 @@ body {
     background: #0a0314;
     color: #FFF;
 }
+.center {
+    text-align: center;
+    padding: 10px 0;
+}

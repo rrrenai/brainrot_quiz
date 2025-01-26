@@ -1,22 +1,71 @@
 const questions = [
     {
-        question: "A question",
+        question: "What genre of game do you most often play?",
         answers: [
-            { text: "Answer a", value: 2 },
-            { text: "Answer b", value: 2 },
-            { text: "Answer c", value: 2 },
-            { text: "Answer d", value: 2 },
+            { text: "Action / fighting", value: 40 },
+            { text: "Turn-based / strategy", value: 30 },
+            { text: "Open world", value: 20 },
+            { text: "Casual", value: 10 },
         ]
     },
     {
-        question: "Another question",
+        question: "On a runaway train, who are you saving?",
         answers: [
-            { text: "Answer e", value: 2 },
-            { text: "Answer f", value: 2 },
-            { text: "Answer g", value: 2 },
-            { text: "Answer h", value: 2 },
+            { text: "Random old person", value: 20 },
+            { text: "A cute doggo", value: 10 },
+            { text: "Ryzen 7 9800X3D", value: 40 },
+            { text: "Gaming chair", value: 30 },
+        ]
+    },
+    {
+        question: "What kinds of weather do you prefer?",
+        answers: [
+            { text: "Colder", value: 20 },
+            { text: "Warmer", value: 10 },
+            { text: "There is no weather in game", value: 40 },
+            { text: "Doesn't matter as long as I have AC", value: 30 },
+        ]
+    },
+    {
+        question: "When do you go to sleep?",
+        answers: [
+            { text: "Between 9 to 11 PM", value: 10 },
+            { text: "After this game", value: 40 },
+            { text: "Whenever I want", value: 20 },
+            { text: "2 AM, consistently", value: 30 },
+        ]
+    },
+    {
+        question: "What do you think of when you hear 'ram'?",
+        answers: [
+            { text: "The animal!", value: 10 },
+            { text: "Random access memory", value: 30 },
+            { text: "The trucks", value: 20 },
+            { text: "The use of semiconductor RAM dates back to 1965 when IBM introdu...", value: 40 },
         ]
     }
+];
+const result = [
+    {
+        name: "lite",
+        image: "",
+        desc: "You don't play games all that often, but you enjoy them for the fun of playing with others!"
+    },
+    {
+        name: "casual",
+        image: "",
+        desc: "You play and enjoy games often enough to beat some levels!"
+    },
+    {
+        name: "skilled",
+        image: "",
+        desc: "You play games pretty often and know a wide variety of games!"
+    },
+    {
+        name: "HARDCORE",
+        image: "",
+        desc: "You have dedicated your life to video games! I'm sorry :("
+    },
 ];
 
 const questionElement = document.getElementById("question");
@@ -79,10 +128,33 @@ function selectAnswer(button) {
     nextButton.style.visibility = "visible";
 }
 
+function detResult() {
+    grade = score/5;
+    profile = [];
+
+    if (grade <= 10) {
+        profile = result[0];
+    } else if (grade > 10 && grade <= 20) {
+        profile = result[1];
+    } else if (grade > 20 && grade <= 30) {
+        profile = result[2];
+    } else {
+        profile = result[3];
+    }
+
+    return profile;
+}
+
 function showScore() {
     resetState();
+    let gamerType = detResult();
 
-    questionElement.innerHTML = `You scored ${score} points!`;
+    questionElement.innerHTML = `You scored ${score/5} points!`;
+    questionElement.innerHTML += `<h2 class="center">You are a ${gamerType.name} gamer!</h2>`;
+    if (gamerType.image !== null) {
+        questionElement.innerHTML += `<img src="${gamerType.image}" alt="${gamerType.name}" class="center">`;
+    }
+    questionElement.innerHTML += `<p class="center">${gamerType.desc}</p>`;
     nextButton.innerHTML = "Play again?";
     nextButton.disabled = false;
     nextButton.style.visibility = "visible";
