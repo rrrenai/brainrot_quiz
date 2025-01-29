@@ -17,7 +17,7 @@ body {
 }
 @keyframes animate-bg {
     100% {
-        background-position: 100vw;
+        background-position: 200%;
     }
 }
 .app {
