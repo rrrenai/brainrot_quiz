@@ -7,17 +7,18 @@
 body {
     /* background: #302f32; */
     background: url("./media/background.jpg") repeat 0 0;
-    animation: animate-bg 46s infinite linear;
+    animation: animate-bg 206s infinite linear;
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-position: left bottom;
     /* width: 100vw; */
 }
 @keyframes animate-bg {
     100% {
-        background-position: 200%;
+        background-position: right 200vw bottom;
     }
 }
 .app {
