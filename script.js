@@ -1,6 +1,7 @@
 const questions = [
     {
         question: "What genre of game do you most often play?",
+        image: "https://hips.hearstapps.com/hmg-prod/images/biggest-cat-breeds-ragdoll-6789899f19f49.jpg?crop=0.6669811320754717xw:1xh;center,top&resize=980:*",
         answers: [
             { text: "Action / fighting", value: 40 },
             { text: "Turn-based / strategy", value: 30 },
@@ -10,6 +11,7 @@ const questions = [
     },
     {
         question: "On a runaway train, who are you saving?",
+        image: "https://s.yimg.com/ny/api/res/1.2/x6LcPmVCIKUDL5VxmFlH7A--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MA--/https://media.zenfs.com/en-US/us.homes.dornob.com/b7bc92a8ee17acbe4816e8d5b281ec36",
         answers: [
             { text: "Random old person", value: 20 },
             { text: "A cute doggo", value: 10 },
@@ -19,6 +21,7 @@ const questions = [
     },
     {
         question: "What kinds of weather do you prefer?",
+        image: "https://thumbs.dreamstime.com/b/little-black-girl-show-sunny-weather-card-class-sitting-nursery-group-showing-145154946.jpg",
         answers: [
             { text: "Colder", value: 20 },
             { text: "Warmer", value: 10 },
@@ -28,6 +31,7 @@ const questions = [
     },
     {
         question: "When do you go to sleep?",
+        image: "https://www.shutterstock.com/image-photo/digital-alarm-clock-showing-2-260nw-2528944307.jpg",
         answers: [
             { text: "Between 9 to 11 PM", value: 10 },
             { text: "After this game", value: 40 },
@@ -37,6 +41,7 @@ const questions = [
     },
     {
         question: "What do you think of when you hear 'ram'?",
+        image: null,
         answers: [
             { text: "The animal!", value: 10 },
             { text: "Random access memory", value: 30 },
@@ -46,6 +51,7 @@ const questions = [
     },
     {
         question: "What is/was your favorite Hack Club event?",
+        image: "https://pbs.twimg.com/media/GMW35z5WwAATFXs.jpg:large",
         answers: [
             { text: "Hackapet", value: 10 },
             { text: "Scrapyard", value: 30 },
@@ -55,6 +61,7 @@ const questions = [
     },
     {
         question: "How often are you online?",
+        image: null,
         answers: [
             { text: "Only for school / work", value: 10 },
             { text: "My Discord is set to run on startup", value: 30 },
@@ -89,10 +96,21 @@ const result = [
 const questionElement = document.getElementById("question");
 const answerButtons = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const imagePlace = document.getElementById("for-image");
+const startScreen = document.getElementById("start-screen");
+const startButton = document.getElementById("start-btn");
+const quizContainer = document.getElementById("quiz-container");
+
 
 let currentQuestionIndex = 0;
 let score = 0;
 let selectedAnswerValue = null;
+
+startButton.addEventListener("click", () => {
+    startScreen.style.display = "none";  // Hide start screen
+    quizContainer.style.display = "block";  // Show quiz
+    startQuiz();
+});
 
 function startQuiz() {
     currentQuestionIndex = 0;
@@ -100,7 +118,7 @@ function startQuiz() {
     selectedAnswerValue = null;
     nextButton.innerHTML = "Next";
     nextButton.disabled = true;
-    nextButton.style.visibility = "none";
+    nextButton.style.display = "none";
     showQuestion();
 }
 
@@ -111,6 +129,10 @@ function showQuestion() {
     let currentQuestion = questions[currentQuestionIndex];
     let questionNum = currentQuestionIndex + 1; 
     questionElement.innerHTML = `${questionNum}. ${currentQuestion.question}`;
+
+    if (currentQuestion.image !== null) {
+        imagePlace.innerHTML = `<img src=${currentQuestion.image} alt=${currentQuestion.question} class="center question-image">`
+    }
 
     currentQuestion.answers.forEach(answer => {
         const button = document.createElement("button");
@@ -128,10 +150,11 @@ function showQuestion() {
 
 function resetState() {
     nextButton.disabled = true;
-    nextButton.style.visibility = "none";
+    nextButton.style.display = "none";
     while(answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild);
     }
+    imagePlace.innerHTML = "";
 }
 
 function selectAnswer(button) { 
@@ -143,7 +166,7 @@ function selectAnswer(button) {
     selectedAnswerValue = Number(button.dataset.value);
 
     nextButton.disabled = false;
-    nextButton.style.visibility = "visible";
+    nextButton.style.display = "block";
 }
 
 function detResult() {
@@ -170,12 +193,12 @@ function showScore() {
     // questionElement.innerHTML = `You scored ${score / questions.length} points!`;
     questionElement.innerHTML = `<h2 class="center">You are a ${gamerType.name} gamer!</h2>`;
     if (gamerType.image !== null) {
-        questionElement.innerHTML += `<img src="${gamerType.image}" alt="${gamerType.name}" class="center">`;
+        questionElement.innerHTML += `<img src="${gamerType.image}" alt="${gamerType.name}" class="center the-fill">`;
     }
     questionElement.innerHTML += `<p class="center">${gamerType.desc}</p>`;
     nextButton.innerHTML = "Play again?";
     nextButton.disabled = false;
-    nextButton.style.visibility = "visible";
+    nextButton.style.display = "block";
 }
 
 function handleNextButton() {

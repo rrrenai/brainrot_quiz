@@ -75,14 +75,26 @@ body {
     border: 1px solid #222;
     border-radius: 4px;
     cursor: pointer;
-    display: block;
-    visibility: hidden;
+    display: none;
     text-align: center;
 }
-#next-btn:hover {
+#next-btn:hover, #start-btn:hover {
     background: #FFF;
     color: #000;
     border: 1px solid #222;
+}
+#start-btn {
+    background: #000;
+    color: #FFF;
+    font-weight: 500;
+    width: 150px;
+    border: 0;
+    padding: 10px;
+    margin: 20px auto 0;
+    border: 1px solid #222;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: center;
 }
 .selected {
     background: #0a0314;
@@ -92,6 +104,15 @@ body {
     text-align: center;
     padding: 10px 0;
 }
-img {
+.the-fill {
     width: 100%;
+}
+.question-image {
+    height: 250px;
+}
+#quiz-container {
+    display: none;
+}
+.title-desc {
+    margin: 10px 0;
 }
